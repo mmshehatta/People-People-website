@@ -1,0 +1,370 @@
+{% extends 'pages/base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<!-- <div class="container" style="margin: 7rem auto;">
+    <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="job_details_header"> -->
+<!-- Messages alert here -->
+<!-- {% if messages %}
+                        {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                          </div>
+                        {% endfor %}
+                        {% endif%} -->
+<!-- /end Messages alert here -->
+<!-- <div class="single_jobs white-bg d-flex justify-content-between bg-dark text-light">
+                            <div class="jobs_left d-flex align-items-center ">
+                                <div class="profile-image">
+                                    <img class="rounded-circle account-img" src="{{ profile.image.url }}" style="height: 125px;
+                                    width: 125px;
+                                    margin-right: 20px;
+                                    margin-bottom: 16px;">                  
+                                 -->
+<!-- </div>
+                                <div class="jobs_conetent">
+                                    <div class="links_locat d-flex align-items-center">
+                                        <div class="location">
+                                            <p> <i class="fa fa-map-marker"></i> {{profile.city}}</p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class=" white-bg p-2 ">
+                                                      
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %} 
+                              
+                            {% bootstrap_form user_info_form %}
+                            {% bootstrap_form profile_info_form %}
+                            
+                            <div class="">
+                                <button type="submit"  class="boxed-btn3 w-100 btn btn-outline-success" >Edit Profile</button>
+                            </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                   
+                </div>
+               
+            </div>
+        </div>
+    </div> -->
+<!-- ******************************** -->
+<!-- *********** CSS ******************* -->
+<style type="text/css">
+body {
+    margin: 0;
+    padding-top: 40px;
+    color: #2e323c;
+    background: #f5f6fa;
+    position: relative;
+    height: 100%;
+}
+
+.account-settings .user-profile {
+    margin: 0 0 1rem 0;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+
+.account-settings .user-profile .user-avatar {
+    margin: 0 0 1rem 0;
+}
+
+.account-settings .user-profile .user-avatar img {
+    width: 90px;
+    height: 90px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+}
+
+.account-settings .user-profile h5.user-name {
+    margin: 0 0 0.5rem 0;
+}
+
+.account-settings .user-profile h6.user-email {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #9fa8b9;
+}
+
+.account-settings .about {
+    margin: 2rem 0 0 0;
+    text-align: center;
+}
+
+.account-settings .about h5 {
+    margin: 0 0 15px 0;
+    color: #007ae1;
+}
+
+.account-settings .about p {
+    font-size: 0.825rem;
+}
+
+.form-control {
+    border: 1px solid #cfd1d8;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    font-size: .825rem;
+    background: #ffffff;
+    color: #2e323c;
+}
+
+.card {
+    background: #ffffff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 0;
+    margin-bottom: 1rem;
+}
+</style>
+<!-- ***************/end CSS ********** -->
+<div class="container" style="margin: 3rem auto;">
+    <div class="row gutters">
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="account-settings">
+                        <div class="user-profile">
+                            <div class="user-avatar">
+                                <img src="{{profile.image.url}}" alt="{{request.user}} image">
+                            </div>
+                            <h3 class="user-name"> {{request.user}}</h3>
+                            <h6 class="user-email">{{request.user.email}}</h6>
+                        </div>
+                        <div class="about">
+                            <h5>About</h5>
+                            <p>{{profile.bio}}</p>
+                        </div>
+                        <div class="about">
+                            <h5>City</h5>
+                            <p>{{profile.city}}</p>
+                        </div>
+                        <div class="about">
+                            <h5>Phone</h5>
+                            <p>{{profile.phone}}</p>
+                        </div>
+                        <hr>
+                        <div class="about">
+                            <a href="{% url 'user_offers' %}" class="profile-info-list-item text-right"><i class="fa fa-handshake"></i> My Offers</a>
+
+                        </div>
+                        <div class="about">
+                            <a href="{% url 'user_needs' %}" class="profile-info-list-item text-right"><i class="fa fa-hand-holding-heart"></i> My Needs</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if  request.user.user_peofile.id == url %}
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+                    <!-- Messages alert here -->
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                    {% endif%}
+                    <!-- /end Messages alert here -->
+                    <!-- ************ form ************ -->
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% bootstrap_form user_info_form %}
+                        {% bootstrap_form profile_info_form %}
+                        <!-- <div class="row gutters">
+
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mb-2 text-primary">Personal Details</h6>
+                        </div>
+ -->
+                        <!-- username -->
+                        <!--   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">                               
+
+                                {{ user_info_form.username.errors }}
+                                <label for="{{ form.username.id_for_label }}">username:</label>
+                                 {{user_info_form.username}}
+
+                            </div>                           
+                        </div> -->
+                        <!-- first name -->
+                        <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">                               
+
+                                {{ user_info_form.first_name.errors }}
+
+                                <label for="{{ user_info_form.first_name.id_for_label }}">First Name:</label>
+                                 {{user_info_form.first_name}}
+
+                            </div>
+                        </div> -->
+                        <!-- last name -->
+                        <!--  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">                               
+
+                                    {{ user_info_form.last_name.errors }}
+
+                                    <label for="{{ user_info_form.first_name.id_for_label }}">Last Name:</label>
+                                     {{user_info_form.last_name}}
+
+                                </div>
+                        </div> -->
+                        <!-- email -->
+                        <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">                               
+
+                                    {{ user_info_form.email.errors }}
+
+                                    <label for="{{ user_info_form.email.id_for_label }}">Email:</label>
+                                     {{user_info_form.email}}
+
+                                </div>
+                        </div> -->
+                        <!-- 
+                </div>
+                        
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="mt-3 mb-2 text-primary">Address</h6>
+                            </div> -->
+                        <!-- Street -->
+                        <!--    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    {{profile_info_form.street.errors}}
+                                    <label for="{{profile_info_form.street.id_for_label}}">Sreet:</label>
+                                    {{profile_info_form.street}}
+
+                                </div>
+                            </div> -->
+                        <!--    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    {{profile_form_info.errors}}
+                                    <label for="{{profile_form_info.city.id_for_label}}">City</label>
+                                    {{profile_form_info.image}}
+                                </div>
+                            </div> -->
+                        <!-- 
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="bio">Bio </label>
+                                    <input type="text" class="form-control" id="bio" placeholder="bio">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="zIp">Zip Code</label>
+                                    <input type="text" class="form-control" id="zIp" placeholder="Zip Code">
+                                </div>
+                            </div>
+                        </div> 
+ -->
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="text-right">
+                                    <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
+                                    <button type="submit" id="submit" name="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- ************ /end form ************ -->
+                </div>
+            </div>
+        </div>
+        {%  else %}
+        <!-- ********************** -->
+        
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+                {% for offer in offers %}
+ <div class="card">
+                        {% if not offer.image.url %}
+                        <img
+                          class="card-img-top"
+                          src=""
+                          height="235px"
+                        />
+            
+                        {% else %}
+                        <img
+                          class="card-img-top"
+                          src="{{offer.image.url}}"
+                          height="235px"
+                        />
+            
+                        {% endif %}
+                        <div class="card-body">
+                          <h5 class="card-title border-bottom pb-3 text-right text-success">
+                            {{offer.owner}}
+                            <small
+                              class="float-left d-inline-flex text-secondary"
+                              style="font-size: 13px"
+                            >
+                              <i class="fa fa-clock m-1 text-success"></i>
+                              {{offer.date}}
+                            </small>
+                          </h5>
+                          <a href="{% url 'offer_details' offer.id %}">
+                            <span class="card-text text-left">
+                              {{offer.name|slice:'10'}}..
+               
+                             </span>
+                          </a>
+                          
+                          {% if offer.status == 'available' %}
+                          <span class="card-text float-right bg-success text-light" > {{offer.status}}   </span>
+                          {% else %}
+                          <span class="card-text float-right bg-danger text-light" > {{offer.status}}   </span>
+                          {% endif %}
+                          <hr>
+                          <a href="{% url 'offer_details' offer.id %}" class="float-right text-success">
+                            More
+                            <i class="fas fa-angle-double-right"></i>
+                          </a>
+                          <a href="{%  url 'user_needs'  %}" class="float-left text-success takeOffer">
+                            Book Now <i class="fas fa-clipboard-check"></i>
+                          </a>
+            
+                          {% if offer.owner == user %}
+                          <a href="{%  url 'update' offer.id %}" class="text-primary ml-5">
+                            <i class="fas fa-edit"></i>
+                          </a>
+                          <a  href="{%  url 'delete' offer.id %}" class="text-danger ml-4 removeOffer">
+                            <i class="fas fa-minus-circle"></i></a>
+                            {% endif %}</div>
+                      </div>
+                {% endfor %}
+                   
+                </div>
+                </div>
+                </div>
+        
+        
+        <!-- ********************** -->
+
+        {% endif %}
+    </div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+</script>
+<!-- ******************* -->
+{% endblock content %}

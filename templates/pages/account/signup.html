@@ -1,0 +1,21 @@
+
+
+{% extends 'pages/base.html' %}
+
+{% load bootstrap4 %}
+<!-- added -->
+
+{% block content %} 
+<div class="container" style="margin: 5rem auto;">
+
+
+<form method="post" action="" class="p-2" style="border:2px solid  green;">
+  {% csrf_token %} 
+  {% bootstrap_form form %}
+
+  <input class="boxed-btn3 w-100 btn btn-outline-success" type="submit" value="Sign Up" />
+</form>
+
+</div>
+
+{% endblock %}

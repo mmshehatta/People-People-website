@@ -1,0 +1,106 @@
+{% extends 'pages/base.html' %}
+ {% load static %}
+
+  {% load bootstrap4 %}
+  {% load crispy_forms_tags %}
+
+
+  {% block content %}
+
+
+
+
+
+
+
+
+
+  <!-- *********** Offeres ******** -->
+  <section class="offers-details" >
+    <div class="container offers  pb-5">
+    <div  class="mb-5" >
+        <h1 class="text-light">Offer Details</h1>
+        <p class="text-light"> We hope to help you</p>
+        <hr>
+      </div>
+
+      <div class="container">
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <h3 class="text-success text-left col-7">Volunteer is : <span class="text-info">{{offer.owner}}</span> </h3>
+              <small class="text-success text-right fa fa-clock col-5 mt-3">
+                {{offer.date}}</small>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+
+              <div class="details text-left col-md-6 text-secondary mt-3">
+                <div>
+                  <label class="fa fa-hand-holding-heart"> Offer Name :  <span class="text-success">
+                    {{offer.name}}
+                  </span> </label>
+                  <h4 class="text-success mr-2">
+
+                  </h4>
+                </div>
+                <div>
+                  <label class="fa fa-user"> Volunteer : <span class="text-success">{{offer.owner}} </span></label>
+                  <h4 class="text-success mr-2">
+
+
+                  </h4>
+                </div>
+                <div>
+                  <label class="fa fa-cubes"> Offer Category : <span class="text-success">{{offer.category.name}}</span></label>
+                  <h4 class="text-success mr-2">
+                  </h4>
+                </div>
+                <div>
+                  <label class="fa fa-map-marker-alt"> place :   <span class="text-success">{{offer.place}}</span> </label>
+                  <h4 class="text-success mr-2">
+
+                  </h4>
+                </div>
+                <div>
+                    <label class="fa fa-pen"> Decription :   <span class="text-success">{{offer.description}}</span> </label>
+                    <h4 class="text-success mr-2">
+
+                    </h4>
+                  </div>
+                  <div class="mb-5">
+                    <label class="fa fa-pen"> Phone :   <span class="text-success">{{offer.phone}}</span> </label>
+                    <h4 class="text-success mr-2">
+
+                    </h4>
+                  </div>
+                <div class="mt-5">
+                  <a
+                      href="#"
+                      class="btn btn-success col-5 takeOffer"
+                      role="button"
+                    >
+                    Book Now <i class="fas fa-clipboard-check"></i>
+                    </a>
+
+                </div>
+              </div>
+              <div class="imaging col-md-6">
+                <img src="{{offer.image.url}}" style="border: 6px solid #dbdcdd; border-radius: 5px"
+                  width="100%" height="400px" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+    </div>
+  </section>
+  <!-- *********** /end Offeres ******** -->
+
+  {% endblock %}

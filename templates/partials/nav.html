@@ -1,0 +1,177 @@
+
+{% load static  %}
+
+<style>
+
+  /*************** navbar ***************/
+.navbar
+{
+    border-radius: 0px;
+    margin-bottom: 4px;
+    border-bottom: 3px solid green;
+}
+.navbar  #logo 
+{
+    font-size: 40px;
+    color: #FF9000;
+    font-weight: bold;
+}
+.navbar  #logo h1:hover
+{
+    text-shadow: 3px 3px 3px #FFF ;
+}
+.navbar  li
+{
+    margin: 0 5px;
+}
+.searching>input
+{
+   border: none;
+   border-radius:  0 .25rem .25rem 0;
+   width: 70%;
+}
+.searching>button
+{
+   border: none;
+   border-radius: .25rem 0 0 .25rem; 
+   padding: 7px 15px;
+}
+.navbar .dropdown-menu
+{
+    right: 0;
+    text-align: left;
+}
+/*************** /navbar ***************/
+
+/*****************************************************************************/
+.navbar-collapse
+{
+    text-align: right;
+}
+
+
+</style>
+
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" ;>
+    <a class="navbar-brand" href="{% url 'home' %}" style="border-bottom:solid #21d30a 3px ;">P4P</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav m-auto">
+        <li class="nav-item active">
+          <a  id="home"  class="nav-link" href=" {% url 'home' %} "
+            >
+            <i class="fa fa-home"></i> 
+            Home 
+            
+            <span class="sr-only">(current)</span></a
+          >
+        </li>
+        {% if not request.user.is_authenticated %}
+
+        <li class="nav-item mr-auto">
+          <a class="nav-link " href="#"><i class="fas fa-address-card"></i> Contact Us</a>
+        </li>
+        <li class="nav-item mr-auto">
+          <a class="nav-link" href="#"> <i class="fas fa-question-circle"></i> FAQ</a>
+        </li>
+        <li class="nav-item mr-auto">
+          <a class="nav-link" href="#"> <i class="fas fa-comment-alt"></i> Reviews</a>
+        </li>
+        {%endif %}
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'accounts:profile' request.user.id %}">
+            <i class="fa fa-user-circle text-light" aria-hidden="true"></i>
+            {{request.user}}
+          
+          </a>
+        </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'offers_list' %}">
+                <i class="fa fa-hand-holding-heart"></i>
+                All offrers 
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'user_offers' %}"><i class="fa fa-hand-holding-heart"></i> Your Offers</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'user_needs' %}">  <i class="fa fa-handshake"></i> Your Needs</a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <img
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                  src="{{ request.user.user_peofile.image.url}}"
+                  style="border-radius: 50%; height: 50px; width: 80px;"
+                  alt=""
+                />
+
+              </a>
+              <div class="dropdown-menu m-2 " aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'accounts:profile' request.user.id %}"> <i class="fas fa-user-edit text-success"> {{request.user.username}}</i></a>
+                <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt text-danger"> Logout</i></a>
+                <div class="dropdown-divider"></div>
+                
+              </div>
+            </li>
+            <li class="nav-item">
+              <a  href="{% url 'add_offer'  %}" class="btn btn-success show-hide-btn mt-2">
+                Add New Offer <span class="fa fa-plus-circle"></span>
+              </a>
+            </li>
+           
+           <!--  <li class="nav-item">
+              <a class="" href="#"> <i class="fas fa-comments text-success"> Messages</i></a>
+             <a class="m-sm-2" href="#"><i class="fas fa-bell text-success "> Notifications</i></a>
+            </li> -->
+
+            <!-- <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li> -->
+            {% endif %}
+      </ul>
+      {% if request.user.is_authenticated %}
+
+        <form  id="search-form" class="form-inline search-form my-2 my-lg-0" action="{% url 'offer_search' %}" >
+          <input
+            name="search_name"
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="what you need"
+            aria-label="Search"
+            id="user-input"
+          />
+          <button class="btn btn-outline-success my-2 my-sm-0" id="search-icon" type="submit">
+            Search
+          </button>
+        </form>
+        
+      
+        {% endif %}
+
+        {% if not request.user.is_authenticated %}
+          <a class="btn btn-outline-success my-2 my-sm-0 m-2" href=" {% url 'login' %}">Login</a>
+          <a class="btn btn-outline-success my-2 my-sm-0 m-2" href="{% url 'accounts:signup' %}">Register</a>
+          {%  endif  %}
+    </div>
+  </nav>
+
+

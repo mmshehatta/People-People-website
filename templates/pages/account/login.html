@@ -1,0 +1,28 @@
+
+
+
+{% extends 'pages/base.html'%}
+
+
+{% load bootstrap4 %}
+<!-- added -->
+
+{% block content %} 
+<div class="container" style="margin: 5rem auto;">
+
+
+<form method="post" action="" class="p-5 mt-5" style="border:2px solid  green;">
+  {% csrf_token %} 
+  {% bootstrap_form form %}
+
+  <input class="btn btn-outline-success mb-5" type="submit" value="Login" />
+ 
+      <a href="{% url 'password_reset' %}" class="btn btn-outline-success mb-5">Forget password ?</a>
+</form>
+
+   <!-- Assumes you setup the password_reset view in your URLconf  -->
+  <!-- <p><a href="{% url 'password_reset' %}">Forget password?</a></p> -->
+</div>
+
+{% endblock %}
+

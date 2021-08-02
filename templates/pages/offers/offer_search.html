@@ -1,0 +1,195 @@
+{% extends 'pages/base.html' %} {% load static %} {% load bootstrap4 %} {% load
+crispy_forms_tags %} {% block content %}
+
+<!-- <form
+  id="search-form"
+  class="form-inline search-form my-2 my-lg-0"
+  action="{% url 'offer_search' %}"
+>
+  <input
+    name="search_name"
+    class="form-control mr-sm-2"
+    type="search"
+    placeholder="what you need"
+    aria-label="Search"
+    id="user-input"
+  />
+  <button
+    class="btn btn-outline-success my-2 my-sm-0"
+    id="search-icon"
+    type="submit"
+  >
+    Search
+  </button>
+</form> -->
+
+<!-- *********** Offeres ********
+<section class="offers">
+  <div class="container" id="replaceable-content">
+    <div class="row">
+      <div class="col-md-4 mb-4" id="crardWraper-search">
+
+
+
+      </div>
+
+      <div class="container text-center d-none">
+        <div class="alert alert-primary p-5" role="alert">
+          <h3>No Offers Match This Name Plz try again</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+ <!-- *********** Offeres ******** -->
+ <section class="offers" >
+  <div class="container" id="replaceable-content">
+  
+    <div class="row">
+          {% for offer in searched_offers %}
+  
+          <div class="col-md-4 mb-4" id="crardWraper">
+            <div class="card">
+              {% if not offer.image.url %}
+              <img
+                class="card-img-top"
+                src=""
+                height="235px"
+              />
+  
+              {% else %}
+              <img
+                class="card-img-top"
+                src="{{offer.image.url}}"
+                height="235px"
+              />
+  
+              {% endif %}
+              <div class="card-body">
+                <h5 class="card-title border-bottom pb-3 text-right text-success">
+                  {{offer.owner}}
+                  <small
+                    class="float-left d-inline-flex text-secondary"
+                    style="font-size: 13px"
+                  >
+                    <i class="fa fa-clock m-1 text-success"></i>
+                    {{offer.date}}
+                  </small>
+                </h5>
+                <p class="card-text text-left">
+                 {{offer.name}}
+  
+                </p>
+                <hr>
+                <a href="{% url 'offer_details' offer.id %}" class="float-right text-success">
+                  More
+                  <i class="fas fa-angle-double-right"></i>
+                </a>
+                <a href="" class="float-left text-success">
+                  Book Now <i class="fas fa-clipboard-check"></i>
+                </a>
+  
+                {% if offer.owner == user %}
+                <a href="{%  url 'update' offer.id %}" class="text-primary ml-5">
+                  <i class="fas fa-edit"></i>
+                </a>
+                <a  href="{%  url 'delete' offer.id %}" class="text-danger ml-5">
+                  <i class="fas fa-minus-circle"></i></a>
+                  {% endif %}</div>
+            </div>
+          </div>
+          {% empty %}
+          <div class="container text-center">
+            <div class="alert alert-primary p-5" role="alert">
+              <h3>No Offers Match This Name Plz try again </h3>
+            </div>
+          </div>
+  
+  
+          {%  endfor  %}
+  
+        </div>
+  
+        <!-- **** pagination *** -->
+       <!-- {% if offers.has_other_pages %}
+        <div class="col-xs-6 col-sm-5 col-xs-offset-4 col-sm-offset-5">
+          <nav>
+            <ul class="pagination">
+              {% if offers.has_previous %}
+              <li class="page-item">
+                <a
+                  class="page-link"
+                  href="?page={{offers.previous_page_number}}"
+                  rel="previous"
+                  aria-label="previous »"
+                  >
+                  &laquo;
+  
+                </a>
+  
+  
+              </li>
+              {% endif %}
+  
+  
+              {% for i in offers.paginator.page_range %}
+  
+  
+              {%  if offers.number == i %}
+  
+                    <li class="page-item active" active aria-current="page">
+                      <a class="page-link" href="?page={{i}}" >
+  
+                        <span class="active">{{i}}</span>
+  
+                        </a>
+  
+  
+                      </li>
+  
+  
+                {% else %}
+  
+                    <li class="page-item " active aria-current="page">
+                                <a class="page-link " href="?page={{i}}" >
+  
+                                  <span class="active">{{i}}</span>
+  
+                                  </a>
+  
+  
+                                </li>
+  
+              {% endif %}
+  
+  
+  
+              {% endfor %}
+  
+  
+  
+                {% if offers.has_next%}
+              <li class="page-item">
+                <a
+                  class="page-link"
+                  href="?page={{offers.next_page_number}}"
+                  rel="next"
+                  aria-label="Next »"
+                  >&raquo;</a
+                >
+              </li>
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+        {% endif %}  -->
+  
+  
+  
+      </div>
+    </section>
+  
+<!-- *********** /end Offeres ******** -->
+
+{% endblock %}

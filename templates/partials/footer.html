@@ -1,0 +1,204 @@
+<style>
+
+  /*************** footer ***************/
+#footer
+{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color:#222222;
+    color: #AAA;
+    margin-bottom: -30px;
+}
+#footer #history h2
+{
+    color: #FF9000;
+    font-weight: bold;
+}
+#footer h3
+{
+    color: #936E16;
+    letter-spacing: 1px;
+    margin: 10px 0 20px;
+}
+#footer #pages a,#footer #social a
+{
+    color: #AAA;
+}
+#footer #pages a:hover
+{
+    color: #FFF;
+}
+#footer #pages li
+{
+    width: 33.3333%;
+    float: left;
+    padding: 5px 0;
+}
+#footer #social
+{
+    margin-left: 25px;
+}
+#footer #social li
+{
+    display: inline;
+    opacity: 0.7;
+    margin: 4px;
+    color: #757575;
+}
+#footer #social a:hover
+{
+    transition: all .5s ease 0s;
+    -webkit-transition: all .5s ease 0s;
+    -moz-transition: all .5s ease 0s;
+    -o-transition: all .5s ease 0s;
+    -ms-transition: all .5s ease 0s;
+    opacity: 1;
+}
+#footer #social #s1:hover
+{
+    color: #4e598f;
+}
+#footer #social #s2:hover
+{
+    color: #55acee;
+}
+#footer #social #s3:hover
+{
+    color: #75b73b;
+}
+#footer #social #s4:hover
+{
+    color: #cf4c3c;
+}
+#footer #social #s5:hover
+{
+    color: #d22215;
+}
+#footer #social #s6:hover
+{
+    color: #6c27b3;
+}
+#footer #social #s7:hover
+{
+    color: #65a2d9;
+}
+/*************** /footer ***************/
+/*************** loading ***************/
+#loading
+{
+    color: #FFF;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    /* background-image: url("../../images/loading2.gif"); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/*************** /loading ***************/
+/*************** scrolltop ***************/
+#scrolltop
+{
+    width: 40px;
+    height: 40px;
+    background-color:green;
+    color: #E0E0E0;
+    text-align: center;
+    font-size: 24px;
+    border: none;
+    border-radius: 13%;
+    outline: none;
+    right: 15px;
+    bottom: 10px;
+    position: fixed;
+    display: none;
+    z-index: 9999;
+}
+#scrolltop:hover
+{
+    color: #FFF;
+    background-color: green;
+    cursor: pointer;
+    transition: all .5s ease 0s;
+    -webkit-transition: all .5s ease 0s;
+    -moz-transition: all .5s ease 0s;
+    -o-transition: all .5s ease 0s;
+    -ms-transition: all .5s ease 0s;
+}
+/*************** /scrolltop ***************/
+#footer{
+
+  font-family: 'Charm';font-size: 22px;
+}
+
+
+</style>
+
+<!-- Start Footer -->
+<section id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 col-xs-6 text-center" id="history">
+          <h3 class="text-success"  >People for people</h3>
+          <p class="lead">
+            Together we can reach the perfect solution
+            <br />
+            Cooperation is the best solution
+          </p>
+        </div>
+        <div class="col-sm-4 hidden-xs text-center">
+          <h3 class="text-success">Links</h3>
+          <ul class="list-unstyled" id="pages">
+            <li><a [routerLink]="['/contactus']"> Contact Us </a></li>
+            <li><a href="#">account</a></li>
+            <li><a href="#">Departments</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-4 col-xs-6">
+          <h3 class="text-center text-success">Follow Us</h3>
+          <ul class="list-unstyled text-center" id="social">
+            <li>
+              <a href="#" target="_blank" id="s1"
+                ><i class="fab fa-facebook fa-2x"></i
+              ></a>
+            </li>
+            <li>
+              <a href="#" target="_blank" id="s2"
+                ><i class="fab fa-twitter fa-2x"></i
+              ></a>
+            </li>
+            <li>
+              <a href="#" target="_blank" id="s4"
+                ><i class="fab fa-google-plus fa-2x"></i
+              ></a>
+            </li>
+            <li class="#">
+              <a target="_blank" id="s3"
+                ><i class="fab fa-whatsapp fa-2x"></i
+              ></a>
+            </li>
+            <li>
+              <a href="#" target="_blank" id="s6"
+                ><i class="fab fa-instagram fa-2x"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr />
+      <div id="rights">
+        <p class="col-xs-12 text-center">
+          All Rights Reserved © People 4 People 2021
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scroll Top -->
+  <div id="scrolltop">
+    <i class="fa fa-chevron-up"></i>
+  </div>
+  <!-- /Scroll Top -->

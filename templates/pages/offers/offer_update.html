@@ -1,0 +1,38 @@
+{% extends 'pages/base.html' %}
+ {% load static %}
+
+  {% load bootstrap4 %}
+  {% load crispy_forms_tags %}
+
+
+  {% block content %}
+
+
+
+
+
+
+
+
+
+  <!-- *********** Offeres ******** -->
+  <section class="offers" >
+<div class="container  pb-5">
+
+  <form class="mt-2 text-light" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|crispy }}
+
+    <button class="btn btn-primary" type="submit">Update Now</button>
+    <a  href="{% url 'user_offers' %}" class="btn btn-secondary" type="submit">Cancel</a>
+
+</form>
+
+</div>
+
+
+    </div>
+  </section>
+  <!-- *********** /end Offeres ******** -->
+
+  {% endblock %}

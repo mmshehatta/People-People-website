@@ -1,0 +1,169 @@
+{% extends 'pages/base.html' %}
+ {% load static %}
+
+  {% load bootstrap4 %}
+  {% load crispy_forms_tags %}
+
+  {% block content %}
+
+
+  <!-- *********** Offeres ******** -->
+  <section class="offers" >
+<div class="container">
+
+
+  <div class="row">
+        {% for offer in offers %}
+
+        <div class="col-md-4 mb-4" id="crardWraper">
+          <div class="card">
+            {% if not offer.image.url %}
+            <img
+              class="card-img-top"
+              src=""
+              height="235px"
+            />
+
+            {% else %}
+            <img
+              class="card-img-top"
+              src="{{offer.image.url}}"
+              height="235px"
+            />
+
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title border-bottom pb-3 text-right text-success">
+                {{offer.owner}}
+                <small
+                  class="float-left d-inline-flex text-secondary"
+                  style="font-size: 13px"
+                >
+                  <i class="fa fa-clock m-1 text-success"></i>
+                  {{offer.date}}
+                </small>
+              </h5>
+              <a href="{% url 'offer_details' offer.id %}">
+                <span class="card-text text-left">
+                  {{offer.name|slice:'10'}}..
+   
+                 </span>
+              </a>
+              
+              {% if offer.status == 'available' %}
+              <span class="card-text float-right bg-success text-light" > {{offer.status}}   </span>
+              {% else %}
+              <span class="card-text float-right bg-danger text-light" > {{offer.status}}   </span>
+              {% endif %}
+              <hr>
+              <a href="{% url 'offer_details' offer.id %}" class="float-right text-success">
+                More
+                <i class="fas fa-angle-double-right"></i>
+              </a>
+              <a href="{% url 'delete' offer.id %}" class="float-left text-secondary removeOffer">
+                remove
+              </a>
+
+              {% if offer.owner == user %}
+              <a href="{%  url 'update' offer.id %}" class="text-primary ml-2 float-left">
+                <i class="fas fa-edit"></i>
+              </a>
+              <a  data-delete  href="{%  url 'delete' offer.id %}" class="text-danger pr-2 float-right removeOffer">
+                <i class="fas fa-minus-circle"></i></a>
+                {% endif %}</div>
+          </div>
+        </div>
+        
+        {% empty %}
+        <div id="alert" class="container text-center p-5 m-5">
+          <div class="alert alert-primary p-2" role="alert">
+            <h3> You Don't add Offers Yet! </h3>
+          </div>
+        </div>
+
+
+        {%  endfor  %}
+
+      </div>
+
+      <!-- **** pagination *** -->
+     {% if offers.has_other_pages %}
+      <div class="col-xs-6 col-sm-5 col-xs-offset-4 col-sm-offset-5">
+        <nav>
+          <ul class="pagination">
+            {% if offers.has_previous %}
+            <li class="page-item">
+              <a
+                class="page-link"
+                href="?page={{offers.previous_page_number}}"
+                rel="previous"
+                aria-label="previous »"
+                >
+                &laquo;
+
+              </a>
+
+
+            </li>
+            {% endif %}
+
+
+            {% for i in offers.paginator.page_range %}
+
+
+            {%  if offers.number == i %}
+
+                  <li class="page-item active" active aria-current="page">
+                    <a class="page-link" href="?page={{i}}" >
+
+                      <span class="active">{{i}}</span>
+
+                      </a>
+
+
+                    </li>
+
+
+              {% else %}
+
+                  <li class="page-item " active aria-current="page">
+                              <a class="page-link " href="?page={{i}}" >
+
+                                <span class="active">{{i}}</span>
+
+                                </a>
+
+
+                              </li>
+
+            {% endif %}
+
+
+
+            {% endfor %}
+
+
+
+              {% if offers.has_next%}
+            <li class="page-item">
+              <a
+                class="page-link"
+                href="?page={{offers.next_page_number}}"
+                rel="next"
+                aria-label="Next »"
+                >&raquo;</a
+              >
+            </li>
+            {% endif %}
+          </ul>
+        </nav>
+      </div>
+      {% endif %}
+
+
+
+    </div>
+  </section>
+  <!-- *********** /end Offeres ******** -->
+
+  {% endblock %}
