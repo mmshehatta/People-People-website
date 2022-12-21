@@ -1,2 +1,2 @@
 # People-People-website
-This project aims to help people by showing their unneeded things to the people who need this thing
+This project is a full featured django project , it is a platform that help two types of people , one(volunteer) that has item that he don't need for now and he need to help others by publishing this item to be borrowed by the second type of peoples (borrower) that they need this item and they do not have money to buy this item , items like clothes , electronics , etc ..
