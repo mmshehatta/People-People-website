@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# media
+# Media files are files uploaded by users and those should never be part of your code base.
+media
